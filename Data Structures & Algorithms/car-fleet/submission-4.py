@@ -1,0 +1,21 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        pair = [[p,s] for p, s in zip(position, speed)]
+        stack = []
+        pair.sort(reverse=True)
+        fleetCounter = 0
+
+        for p,s in pair:
+            time = (target - p) / s
+            stack.append(time)
+
+            if len(stack) >= 2 and time <= stack[-2]:
+                stack.pop()
+                fleetCounter += 1
+        return len(stack)
+
+        
+
+
+
+        
